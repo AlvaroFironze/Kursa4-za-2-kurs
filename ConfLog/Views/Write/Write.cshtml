@@ -1,0 +1,61 @@
+﻿@model List<CartItem>
+
+<div class="row mt-5 mb-2">
+    <h2>Теперь выберем какие функции нам нужны</h2>
+    @using (Html.BeginForm("Result", "Write",FormMethod.Post, new{@class="row mt-5 mb-2"}))
+        {
+        {
+        foreach (var function in ViewBag.Fe)
+        {
+                <div class="col-sm-4 mb-3">
+                    <div class="p-5 text-center bg-image rounded-3" style="
+           background-image: url(@function.img);
+    background-size: cover;
+            height: 300px;
+          ">
+          <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+            <div class="d-flex justify-content-center align-items-center h-100">
+              <div class="text-white">
+                <h1 class="mb-3">@function.name</h1>
+                <h4 class="mb-3">@function.desk</h4>
+                <input type="checkbox" class="btn-check" id=@function.name autocomplete="off" disabled>
+    <label class="btn btn-primary" for=@function.name>Обязательно</label>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+        }
+            @for (int i = 0; i < Model.Where(p=>p.func.typeID==2).Count(); i++)
+                {
+                <div class="col-sm-4 mb-3">
+                    <div class="p-5 text-center bg-image rounded-3" style="
+          background-image: url(@Model.Where(p=>p.func.typeID==2).ToList()[i].func.img);
+    background-size: cover;
+            height: 300px;
+          ">
+          <div class="mask" style="background-color: rgba(0, 0, 0, 0.8);">
+    <div class="d-flex justify-content-center align-items-center h-50">
+    <div class="text-white">
+    <h1 class="mb-3">@Model.Where(p=>p.func.typeID==2).ToList()[i].func.name</h1>
+    <h4 class="mb-3">@Model.Where(p=>p.func.typeID==2).ToList()[i].func.desk</h4>
+    <div class="form-check" data-toggle="buttons">
+ @Html.CheckBoxFor(m => m.Where(p=>p.func.typeID==2).ToList()[i].Checked@*, new {  @style="display:none"}*@)
+                       
+                        @Html.LabelFor(m => m.Where(p=>p.func.typeID==2).ToList()[i].Checked, @Model.Where(p=>p.func.typeID==2).ToList()[i].func.name,new {  @class="btn btn-primary"} )
+    @Html.HiddenFor(m => @Model.Where(p=>p.func.typeID==2).ToList()[i].func.id)
+    @Html.HiddenFor(m => @Model.Where(p=>p.func.typeID==2).ToList()[i].func.name)
+    </div>
+    </div>
+    </div>
+    </div>
+        </div>
+            </div>
+        }
+                <div class="btn-group inline mt-5">
+                <a class="btn btn-secondary btn-lg" asp-controller="Write" asp-action="Home" >Назад</a>
+                 <button class="btn btn-primary btn-lg" type="submit" value="Submit" >Продолжаем</button>
+                </div>
+   } }
+   </div>
+    </div>

@@ -1,0 +1,46 @@
+﻿@using ConfLog.Models;
+@model ConstructorDetails
+<div class="row mt-5 mb-2">
+    <h2>Давайте настроим эти функции под вас</h2>
+    <div class="row mb-5">
+        <form asp-action="Form" method="post" class="row mt-5 mb-2">
+           
+                
+            
+            <div class="form-group" id="Text" style="display:none">
+                <label asp-for= "Text" ></label>
+                <div class="col-12">
+                    <input asp-for="Text" class="form-control"/>
+                    <span asp-validation-for="Text" class="text-danger"></span>
+                </div>
+        </div>
+         <div class="form-group" id="Excel" style="display:none">
+                <label asp-for= "Excel" ></label>
+                <div class="col-12">
+                    <input asp-for="Excel" class="form-control"/>
+                    <span asp-validation-for="Excel" class="text-danger"></span>
+                </div>
+        </div>
+         <div class="form-group" id="Tcp" style="display:none">
+                <label asp-for= "Tcp" ></label>
+                <div class="col-12">
+                    <input asp-for="Tcp" class="form-control"/>
+                    <span asp-validation-for="Tcp" class="text-danger"></span>
+                </div>
+        </div>
+         <div class="btn-group inline mt-5">
+        <a class="btn btn-secondary btn-lg" asp-controller="Form" asp-action="Home" >Назад</a>
+        <button class="btn btn-primary btn-lg" type="submit" value="Submit" >Продолжаем</button>
+        </div>
+        </form>
+
+    </div>
+    </div>
+    <script>
+var content = '@(ViewBag.Fu)';
+</script>
+<script src="/js/form.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        getItems();
+ 
+    </script>

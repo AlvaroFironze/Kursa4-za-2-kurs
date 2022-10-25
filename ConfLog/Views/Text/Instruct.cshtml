@@ -1,0 +1,40 @@
+﻿@model List<Function>
+<div class="row mt-5 mb-2">
+    <h2>Подсказочки</h2>
+    <div class="row mt-5 mb-5">
+        <h3>Сойздайте объект класса Logger:</h3>
+        <h6>Logger имя = new Logger();</h6>
+        <h3>Используйте уровни логирования:</h3>
+        @foreach(var func in Model)
+        {
+            if ((@func.level > 0) & (@func.level < 5))
+            {
+                <h6>@func.toUse</h6>
+            }
+        }
+         @foreach(var func in Model)
+        {
+            if (@func.level > 4)
+            {
+                 <h6>@func.toUse</h6>
+            }
+        }
+        @if ((Model.Select(p=>p.name).ToList().Contains("DEBUG")) || (Model.Select(p=>p.name).ToList().Contains("TRACE"))||(Model.Select(p=>p.name).ToList().Contains("ALL") )){
+             <h5> Используйте .DoDebug=True для начала логирования низких уровней</h5>
+        }
+        @if (Model.Where(p => !p.isBase).Where(r => r.typeID == 2).Any())
+        {
+            <h3>Собирайте логи вашим Elc:</h3>
+        }
+        @foreach(var func in Model)
+        {
+            if (@func.typeID == 2)
+            {
+                 <h6>@func.toUse</h6>
+            }
+        }
+        </div>
+         <a class="btn btn-secondary btn-lg" asp-controller="Home" asp-action="Index" >На главную</a>
+        </div>
+        <script src="/js/instruct.js"></script>
+        <script type="text/javascript">Instruct()</script>
